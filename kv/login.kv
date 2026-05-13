@@ -1,0 +1,111 @@
+<LoginScreen>:
+    canvas.before:
+        Color:
+            rgba:1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    RelativeLayout:
+
+        # --- LOGO ---
+        Image:
+            source: 'imagenes/logo lift scan.jpg'
+            size_hint: None, None
+            size: 180, 180
+            # 'center_x': 0.5 lo centra horizontalmente
+            # 'top': 0.98 lo pega casi al techo
+            pos_hint: {'center_x': 0.5, 'top': 0.9}
+
+        Image:
+            source: 'imagenes/Logo Bavaria.png' # Cambia esto por el nombre de tu archivo
+            size_hint: None, None
+            size: 90, 90  # Tamaño más pequeño para que parezca un icono/logo secundario
+            # 'right': 0.98 lo pega al borde derecho
+            # 'top': 0.98 lo pega al techo
+            pos_hint: {'right': 0.98, 'top': 1}
+
+        # --- TARJETA BLANCA ---
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 20
+            spacing: 10
+            size_hint: 0.75, None
+            height: 300
+            
+            # --- AQUÍ ESTÁ EL TRUCO ---
+            # Si subes este 0.5 a 0.6, la tarjeta SUBE.
+            # Si lo bajas a 0.4, la tarjeta BAJA.
+            pos_hint: {'center_x': 0.5, 'center_y': 0.35}
+            
+            canvas.before:
+                Color:
+                    rgba: 0.95, 0.95, 0.95, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [20,]
+
+            Label:
+                text: 'Usuario'
+                color: 0.2, 0.2, 0.2, 1
+                font_size: '14sp'
+                size_hint_y: None
+                height: 25
+                text_size: self.size
+                halign: 'left'
+
+            TextInput:
+                id: input_usuario
+                hint_text: 'Su usuario'
+                multiline: False
+                size_hint_y: None
+                height: 40
+                background_normal: ''
+                padding: [10, 10]
+
+            Label:
+                text: 'Contraseña'
+                color: 0.2, 0.2, 0.2, 1
+                font_size: '14sp'
+                size_hint_y: None
+                height: 25
+                text_size: self.size
+                halign: 'left'
+
+            TextInput:
+                hint_text: 'Escriba su contraseña'
+                password: True
+                multiline: False
+                size_hint_y: None
+                height: 40
+                background_normal: ''
+                padding: [10, 10]
+
+            # Espacio en blanco para separar
+            Widget:
+                size_hint_y: None
+                height: 10
+
+            Button:
+                text: 'Iniciar Sesión'
+                size_hint_y: None
+                height: 45
+                background_color: 0, 0, 0, 0
+                on_release: root.ir_a_inicio()
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [8,]
+
+            Button:
+                text: 'Regitrarse'  
+                color: 0.4, 0.4, 0.4, 1
+                background_color: 0, 0, 0, 0
+                font_size: '12sp'
+                size_hint_y: None
+                height: 30
+                on_press: root.manager.current = 'register'

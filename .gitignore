@@ -1,0 +1,47 @@
+# Entornos virtuales
+venv/
+.venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+
+# Paquetes y builds
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Configuracion local y secretos
+.env
+.env.*
+!.env.example
+
+# IDEs y sistema operativo
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs y temporales
+*.log
+*.tmp
+*.bak
+
+# Archivos comprimidos generados
+*.zip
+*.rar
+*.7z
+
+# Salidas generadas por la app
+evidencias/
+fotos_bavaria/
+videos/

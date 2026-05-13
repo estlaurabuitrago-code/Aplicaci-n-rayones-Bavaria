@@ -1,0 +1,121 @@
+<RegisterScreen>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    RelativeLayout:
+
+        # --- LOGO PRINCIPAL ---
+        Image:
+            source: 'imagenes/logo lift scan.jpg'
+            size_hint: None, None
+            size: 180, 180
+            pos_hint: {'center_x': 0.5, 'top': 0.9}
+
+        # --- LOGO BAVARIA ---
+        Image:
+            source: 'imagenes/Logo Bavaria.png'
+            size_hint: None, None
+            size: 90, 90
+            pos_hint: {'right': 0.98, 'top': 1}
+
+        # --- TARJETA BLANCA ---
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 20
+            spacing: 8
+            size_hint: 0.75, None
+            height: 320
+            pos_hint: {'center_x': 0.5, 'center_y': 0.35}
+            
+            canvas.before:
+                Color:
+                    rgba: 0.95, 0.95, 0.95, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [20,]
+
+            Label:
+                text: 'Email'
+                color: 0.2, 0.2, 0.2, 1
+                font_size: '14sp'
+                size_hint_y: None
+                height: 25
+                text_size: self.size
+                halign: 'left'
+
+            TextInput:
+                hint_text: 'Su correo'
+                multiline: False
+                size_hint_y: None
+                height: 35
+                background_normal: ''
+                padding: [10, 10]
+
+            Label:
+                text: 'Contraseña'
+                color: 0.2, 0.2, 0.2, 1
+                font_size: '14sp'
+                size_hint_y: None
+                height: 25
+                text_size: self.size
+                halign: 'left'
+
+            TextInput:
+                hint_text: 'Cree una contraseña'
+                password: True
+                multiline: False
+                size_hint_y: None
+                height: 35
+                background_normal: ''
+                padding: [10, 10]
+
+            # --- CHECKBOX ---
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: 30
+                spacing: 5
+
+                CheckBox:
+                    size_hint_x: None
+                    width: 30
+                    color: 0, 0, 0, 1
+                Label:
+                    text: 'Recordar siempre'
+                    color: 0.3, 0.3, 0.3, 1
+                    font_size: '12sp'
+                    text_size: self.size
+                    halign: 'left'
+                    valign: 'middle'
+
+            Widget:
+                size_hint_y: None
+                height: 5
+
+            Button:
+                text: 'Registrar'
+                size_hint_y: None
+                height: 45
+                background_color: 0, 0, 0, 0
+                on_press: root.registrar_usuario()
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [8,]
+
+            Button:
+                text: '¿Ya tienes cuenta? Inicia sesión'
+                color: 0.4, 0.4, 0.4, 1
+                background_color: 0, 0, 0, 0
+                font_size: '12sp'
+                size_hint_y: None
+                height: 30
+                on_press: root.manager.current = 'login'

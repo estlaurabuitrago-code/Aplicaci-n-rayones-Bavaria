@@ -1,0 +1,101 @@
+#:import ModalView kivy.uix.modalview.ModalView
+
+<MenuDesplegable@ModalView>:
+    size_hint: (None, None)
+    size: ('200dp', '130dp')
+    pos_hint: {'x': 0, 'top': 0.9}
+    background_color: 0, 0, 0, 0
+    auto_dismiss: True
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '10dp'
+        spacing: '5dp'
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [0, 0, 20, 0]
+
+        Button:
+            text: "Configuración"
+            background_normal: ''
+            background_color: 0.95, 0.92, 0.98, 1
+            color: 0, 0, 0, 1
+            on_release: root.dismiss()
+
+        Button:
+            text: "Cerrar Sesión"
+            background_normal: ''
+            background_color: 0.95, 0.92, 0.98, 1
+            color: 0.8, 0, 0, 1
+            on_release:
+                root.dismiss()
+                app.root.current = 'login'
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # Barra Superior
+        BoxLayout:
+            size_hint_y: None
+            height: '60dp'
+            canvas.before:
+                Color:
+                    rgba: 0.95, 0.92, 0.98, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Button:
+                text: "≡"
+                size_hint_x: None
+                width: '50dp'
+                background_color: 0, 0, 0, 0
+                color: 0.4, 0.2, 0.6, 1
+                font_size: '32sp'
+                on_release: root.abrir_menu()
+
+            Label:
+                text: "BAVARIA IA"
+                color: 0.4, 0.2, 0.6, 1
+                bold: True
+
+            Widget:
+                size_hint_x: None
+                width: '50dp'
+
+        # Espacio de Cámara
+        RelativeLayout:
+            size_hint_y: 0.7
+            Image:
+                id: live_image
+                size_hint: 1, 1
+                allow_stretch: True
+                # Una imagen de fondo opcional mientras no hay cámara
+                source: 'assets/placeholder.png' if hasattr(self, 'source') else ''
+
+        # Botón de activación
+        AnchorLayout:
+            size_hint_y: 0.2
+            anchor_x: 'center'
+            anchor_y: 'center'
+            Button:
+                id: btn_camara
+                text: "INICIAR DETECCIÓN"
+                size_hint: None, None
+                size: "200dp", "50dp"
+                background_normal: ''
+                background_color: 0.4, 0.2, 0.6, 1
+                color: 1, 1, 1, 1
+                bold: True
+                on_release: root.toggle_camara()
